@@ -11,17 +11,11 @@
   srfi-69)
 
 ;; Project imports
-(import file-input-loader)
+(import day-1-trebuchet-helpers file-input-loader)
 
-(define word-digits
-  '("one" "two" "three" "four" "five" "six" "seven" "eight" "nine"))
 
-(define (find-first-char-digit-or-word-digit line)
-  '())
-
-(define (find-last-char-digit-or-word-digit line)
-  '())
-
+;; csc -o day-1-trebuchet.exe day-1-trebuchet.scm
+;;   ./day-1-trebuchet.exe day-1-input.txt
 (let ((filePath (car (command-line-arguments)))) 
   (let [(lines (file->list filePath))]
     (printf
@@ -31,13 +25,20 @@
         0
         (map
           (lambda (line)
-            (let
-              [(chars (string->list line))]
-              (string->number 
-                (list->string
-                  (append 
-                    (list (find char-numeric? chars))
-                    (list (find char-numeric? (reverse chars))))))))
+            (string->number 
+              (list->string
+                (append 
+                  (list (car (find-first-char-digit-or-word-digit line)))
+                  (list (car (find-last-char-digit-or-word-digit line)))))))
           lines)))))
 
+;;
 
+    ;;(map
+    ;;  (lambda (line)
+    ;;    (string->number 
+    ;;      (list->string
+    ;;        (append 
+    ;;          (list (car (find-first-char-digit-or-word-digit line)))
+    ;;          (list (car (find-last-char-digit-or-word-digit line)))))))
+    ;;  #1)
