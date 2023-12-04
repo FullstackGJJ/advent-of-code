@@ -28,17 +28,6 @@
             (string->number 
               (list->string
                 (append 
-                  (list (car (find-first-char-digit-or-word-digit line)))
-                  (list (car (find-last-char-digit-or-word-digit line)))))))
+                  (list (caar (sorted-indices-for-digits line)))
+                  (list (caar (reverse (sorted-indices-for-digits line))))))))
           lines)))))
-
-;;
-
-    ;;(map
-    ;;  (lambda (line)
-    ;;    (string->number 
-    ;;      (list->string
-    ;;        (append 
-    ;;          (list (car (find-first-char-digit-or-word-digit line)))
-    ;;          (list (car (find-last-char-digit-or-word-digit line)))))))
-    ;;  #1)
